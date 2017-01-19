@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>Report template</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+    <script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+	<div class="select">
+		<input type="button" onclick="displayBugPanel();" value="Show Bug report template"></input>
+		<input type="button" onclick="displayRailPanel();" value="Show Test rail template"></input>
+	</div>
+	<div id="deffect" style="display: none">
+		<div>
+			<select id="testResult">
+                <option value="{panel:title=Result:|titleColor=#004d1a|borderColor=#0E6251|titleBGColor=#4dff88|bgColor=#ccffdd}">Pass</option>
+                <option value="{panel:title=Result:|titleColor=#662900|borderColor=#922B21|titleBGColor=#ff6600|bgColor=#ff8533}">Fail</option>
+				<option value="{panel:title=Result:|titleColor=#000000|borderColor=#000000|titleBGColor=#ccc3ae|bgColor=#fff4da}">Cancel</option>
+			</select><br>
+			<select id="branch">
+                <option value="R16.11">R16.11</option>
+                <option value="R16.12">R16.12</option>
+				<option value="R17.1">R17.1</option>
+				<option value="R17.3">R17.3</option>
+			</select>
+			<input id="revision" placeholder="Revision"></input><br>
+			<select id="platform">
+                <option value="Mobile">Mobile</option>
+                <option value="Decktop">Desktop</option>
+			</select><br>
+			<input id="browser" placeholder="Browser"></input><br>
+			<input id="OS" placeholder="OS"></input><br>
+			<input id="device" placeholder="Device"></input><br>
+			<select id="conclusion">
+                <option value="Fixed (/)">Fixed</option>
+                <option value="Reproduced (x)">Reproduced</option>
+				<option value="Can't reproduce (x)">Can't reproduce</option>
+			</select>
+		</div>
+	</div>
+	<div id="testrail" style="display: none">
+	
+		<div>
+			<select id="status">
+                <option value="Started">Started</option>
+                <option value="Done">Done</option>
+			</select>
+		</div>
+	</div>
+	<input type="button" onclick="generateReport();" value="Generate"></input><br>
+	<div id="result">
+		<b id='report'></b>
+		<b id='reportBrowse' style="display: none"></b>
+	</div>
+</body>
+</html>
