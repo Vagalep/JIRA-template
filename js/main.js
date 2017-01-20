@@ -12,27 +12,90 @@ function displayRailPanel(){
 	rail.style.display = 'inline';
 }
 
-function generateReport() {
-	var testResult = document.getElementById("testResult");
-    var branch = document.getElementById("branch");
-    var revision = document.getElementById("revision");
-    var platform = document.getElementById("platform");
-	
-    var browser = document.getElementById("browser");
-	var browserR = document.getElementById("reportBrowse");
-	
-	
-    var params1 = [testResult.value + "<br>" + "| (i) *Verified with:* | {{" + branch.value + "/" + revision.value + "}} |<br>" + "| (i) *Platform:* | " + platform.value + " |<br>"];
-	var params2 = ["| (i) *Browser:* | " + browser.value + " |<br>"];
-	
-	document.getElementById('report').innerHTML = params1;
-	
-	console.log(params2);
-	
-	if (browser.value.length > 0){
-		browserR.style.display = 'inline';
-		browserR.innerHTML = params2;
+function selectFunction(){
+	if (resultIn.value > 0){
+		$('#conclusionIn').html('<option value="Fixed">Fixed</option>');
+	} else if (resultIn.value < 0){
+		$('#conclusionIn').html('<option value="Reproduced">Reproduced</option>');
 	}else{
-		browserR.style.display = 'none';
+		$('#conclusionIn').html('<option value="Can\'t reproduce">Can\'t reproduce</option>');
 	}
+}
+
+function generateHeader() {
+	var resultIn = document.getElementById("resultIn");
+	var conclusionIn = document.getElementById("conclusionIn");
+	var selfConclusionIn = document.getElementById(selfConclusionIn);
+	console.log(selfConclusionIn);
+	if (resultIn.value > 0){
+		var rezultFormat = "{panel:title=Result:|titleColor=#004d1a|borderColor=#0E6251|titleBGColor=#4dff88|bgColor=#ccffdd}";
+		var conclusionFormat = "| (i) *Conclusion:* | Fixed (/) |<br>{panel}";
+	}else if (resultIn.value < 0){
+		var rezultFormat = "{panel:title=Result:|titleColor=#662900|borderColor=#922B21|titleBGColor=#ff6600|bgColor=#ff8533}"
+		var conclusionFormat = "| (i) *Conclusion:* | Reproduced (x) |<br>{panel}";
+	}else if (resultIn.value == 0){
+		var rezultFormat = "{panel:title=Result:|titleColor=#000000|borderColor=#000000|titleBGColor=#ccc3ae|bgColor=#fff4da}"
+		var conclusionFormat = "| (i) *Conclusion:* | Can't reproduce (x) |<br>{panel}";
+	}else{
+		var conclusionFormat = "| (i) *Conclusion:* | " + selfConclusionIn.value + " |<br>{panel}";
+	}
+	
+	var resultOut = document.getElementById("resultOut");
+	var conclusionOut = document.getElementById("conclusionOut");
+
+	resultOut.innerHTML = rezultFormat;
+	conclusionOut.innerHTML = conclusionFormat;
+}
+
+function generateReport() {
+	
+    var branchIn = document.getElementById("branchIn");
+    var revisionIn = document.getElementById("revisionIn");
+    var platformIn = document.getElementById("platformIn");
+    var browserIn = document.getElementById("browserIn");
+	var osIn = document.getElementById("osIn");
+	var deviceIn = document.getElementById("deviceIn");
+	
+    var branchOut = document.getElementById("branchOut");
+    var revisionOut = document.getElementById("revisionOut");
+    var platformOut = document.getElementById("platformOut");
+    var browserOut = document.getElementById("browserOut");
+	var osOut = document.getElementById("osOut");
+	var deviceOut = document.getElementById("deviceOut");
+
+	if (browserIn.value.length > 0){
+		browserOut.style.display = 'inline';
+		browserOut.innerHTML = browserFormat;
+	}else{
+		browserOut.style.display = 'none';
+	}
+	
+	if (osIn.value.length > 0){
+		osOut.style.display = 'inline';
+		osOut.innerHTML = osFormat;
+	}else{
+		osOut.style.display = 'none';
+	}
+	
+	if (deviceIn.value.length > 0){
+		deviceOut.style.display = 'inline';
+		deviceOut.innerHTML = deviceFormat;
+	}else{
+		deviceOut.style.display = 'none';
+	}
+	
+	var branchFormat = ["| (i) *Verified with:* | {{" + branchIn.value];
+	var revisionFormat = ["/" + revisionIn.value] + "}} |";
+	var platformFormat = ["| (i) *Platform:* | " + platformIn.value + " |"];
+	var browserFormat = ["| (i) *Browser:* | " + browserIn.value + " |<br>"];
+	var osFormat = ["| (i) *OS:* | " + osIn.value + " |<br>"];
+	var deviceFormat = ["| (i) *Device:* | " + deviceIn.value + " |<br>"];
+
+	generateHeader();
+	branchOut.innerHTML = branchFormat;
+	revisionOut.innerHTML = revisionFormat;
+	platformOut.innerHTML = platformFormat;
+	browserOut.innerHTML = browserFormat;
+	osOut.innerHTML = osFormat;
+	deviceOut.innerHTML = deviceFormat;
 }
