@@ -19,6 +19,7 @@
                 <option value="-1">Fail</option>
 				<option value="0">Cancel</option>
 			</select><br>
+			<div id="div1">
 			<select id="branchIn">
 				<option value="trunk">trunk</option>
                 <option value="R16.11">R16.11</option>
@@ -26,7 +27,10 @@
 				<option value="R17.1">R17.1</option>
 				<option value="R17.3">R17.3</option>
 			</select>
-			<input id="revisionIn" placeholder="Revision"></input><br>
+			<input id="revisionIn" placeholder="Revision"></input>
+			<input type="button" onclick="addOneMore();" value="+"></input><br>
+			</div>
+			
 			<select id="platformIn">
                 <option value="Mobile">Mobile</option>
                 <option value="Desktop">Desktop</option>

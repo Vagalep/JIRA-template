@@ -61,6 +61,15 @@ function generateHeader() {
 	conclusionOut.innerHTML = conclusionFormat;
 }
 
+function addOneMore() {
+
+	$('#div1').append('<select id="branchIn"><option value="trunk">trunk</option><option value="R16.11">R16.11</option><option value="R16.12">R16.12</option><option value="R17.1">R17.1</option><option value="R17.3">R17.3</option> </select>');
+	$('#div1').append('<input id="revisionIn" placeholder="Revision"></input>');
+	$('#div1').append('<br>');
+
+}
+
+
 function generateReport() {
 	
     var branchIn = document.getElementById("branchIn");
